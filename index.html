@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RiotDog N - 당신의 게임 전적 비서</title>
+    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&display=swap" rel="stylesheet">
@@ -13,15 +15,13 @@
         /* 기본 스타일 및 커스텀 애니메이션 */
         body {
             font-family: 'Noto Sans KR', sans-serif;
-            background-color: #0d0a1a;
+            background-color: #0a0f1f; /* 기본 배경을 좀 더 푸른 톤으로 */
             color: #e0e0e0;
             overflow-x: hidden;
-            /* 텍스트 선택 및 복사 방지 */
             user-select: none;
             -webkit-user-select: none;
             -moz-user-select: none;
             -ms-user-select: none;
-            /* 전역 텍스트 그림자 효과 */
             text-shadow: 0px 1px 3px rgba(0, 0, 0, 0.5);
         }
 
@@ -32,8 +32,8 @@
             width: 100%;
             height: 100%;
             z-index: -1;
-            /* 그라데이션 색상을 더 선명하게 조정 */
-            background: linear-gradient(-45deg, #3a1c71, #0d0a1a, #d76d77, #ffaf7b);
+            /* 그라데이션 색상을 남색/파란색 계열로 변경 */
+            background: linear-gradient(-45deg, #0a192f, #1e3a8a, #0a0f1f, #3b82f6);
             background-size: 400% 400%;
             animation: gradient-animation 15s ease infinite;
         }
@@ -47,21 +47,22 @@
         .neon-text {
             text-shadow:
                 0 0 7px rgba(255, 255, 255, 0.9),
-                0 0 12px rgba(255, 255, 255, 0.7),
-                0 0 25px rgba(230, 200, 255, 0.5),
-                0 0 50px rgba(200, 150, 255, 0.4),
+                0 0 12px rgba(173, 216, 230, 0.7), /* 연한 파란색 네온 */
+                0 0 25px rgba(66, 135, 245, 0.5),  /* 진한 파란색 네온 */
+                0 0 50px rgba(66, 135, 245, 0.4),
                 0px 1px 3px rgba(0, 0, 0, 0.5);
         }
         
         .neon-button {
             transition: all 0.3s ease;
             border: 2px solid #fff;
+            /* 버튼 네온 효과를 파란색으로 변경 */
             box-shadow:
                 0 0 5px #fff,
-                0 0 10px #fff,
-                0 0 15px #c89dff,
+                0 0 10px #add8e6,
+                0 0 15px #4287f5,
                 inset 0 0 5px #fff,
-                inset 0 0 10px #c89dff;
+                inset 0 0 10px #4287f5;
             animation: pulse-button 2.5s infinite alternate;
         }
 
@@ -69,18 +70,18 @@
             background-color: rgba(255, 255, 255, 0.1);
             box-shadow:
                 0 0 10px #fff,
-                0 0 20px #fff,
-                0 0 30px #d8b4fe,
+                0 0 20px #add8e6,
+                0 0 30px #4287f5,
                 inset 0 0 10px #fff,
-                inset 0 0 20px #d8b4fe;
+                inset 0 0 20px #4287f5;
         }
 
         @keyframes pulse-button {
             from {
-                text-shadow: 0 0 10px #fff, 0 0 20px #d8b4fe;
+                text-shadow: 0 0 10px #fff, 0 0 20px #add8e6;
             }
             to {
-                text-shadow: 0 0 20px #fff, 0 0 30px #d8b4fe;
+                text-shadow: 0 0 20px #fff, 0 0 30px #4287f5;
             }
         }
 
@@ -95,7 +96,8 @@
         .feature-card:hover {
             border-color: rgba(255, 255, 255, 0.8);
             transform: translateY(-10px);
-            box-shadow: 0 0 20px rgba(200, 150, 255, 0.3), 0 0 40px rgba(200, 150, 255, 0.2);
+            /* 호버 효과를 파란색 네온으로 변경 */
+            box-shadow: 0 0 20px rgba(66, 135, 245, 0.3), 0 0 40px rgba(66, 135, 245, 0.2);
         }
     </style>
 </head>
@@ -103,9 +105,11 @@
     <div class="relative">
         <div class="animated-gradient"></div>
 
+        <!-- 헤더 -->
         <header class="fixed top-0 left-0 right-0 z-50 p-4 bg-transparent backdrop-blur-sm bg-opacity-10">
             <div class="container mx-auto flex justify-between items-center">
                 <div class="flex items-center space-x-3">
+                    <!-- 봇 아이콘 SVG -->
                     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-white"><path d="M12 8V4H8"/><rect width="16" height="12" x="4" y="8" rx="2"/><path d="M2 14h2"/><path d="M20 14h2"/><path d="M15 13v2"/><path d="M9 13v2"/></svg>
                     <h1 class="text-2xl font-bold text-white">RiotDog N</h1>
                 </div>
@@ -122,6 +126,7 @@
         </header>
 
         <main>
+            <!-- 히어로 섹션 -->
             <section class="min-h-screen flex items-center justify-center text-center px-4">
                 <div class="max-w-3xl">
                     <h2 class="text-5xl md:text-7xl font-black text-white neon-text mb-4 leading-tight">
@@ -138,6 +143,7 @@
                 </div>
             </section>
 
+            <!-- 기능 소개 섹션 -->
             <section id="features" class="py-20 px-4">
                 <div class="container mx-auto">
                     <div class="text-center mb-12">
@@ -147,7 +153,7 @@
                     <div class="grid md:grid-cols-3 gap-8">
                         <div class="feature-card rounded-2xl p-8 text-center">
                             <div class="inline-block p-4 bg-gray-800 rounded-full mb-4 border border-gray-700">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-purple-400"><line x1="6" x2="10" y1="12" y2="12"/><line x1="8" x2="8" y1="10" y2="14"/><path d="M17.28 9.05a2.43 2.43 0 0 0-2.18-2.18"/><path d="M20.57 14.95a2.43 2.43 0 0 0 2.18-2.18"/><path d="M12 2a10 10 0 1 0 10 10"/><path d="M12 22a10 10 0 0 0-10-10"/></svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-cyan-400"><line x1="6" x2="10" y1="12" y2="12"/><line x1="8" x2="8" y1="10" y2="14"/><path d="M17.28 9.05a2.43 2.43 0 0 0-2.18-2.18"/><path d="M20.57 14.95a2.43 2.43 0 0 0 2.18-2.18"/><path d="M12 2a10 10 0 1 0 10 10"/><path d="M12 22a10 10 0 0 0-10-10"/></svg>
                             </div>
                             <h3 class="text-2xl font-bold text-white mb-2">발로란트 전적 조회</h3>
                             <p class="text-gray-400">`/발로란트` 명령어로 현재 랭크, K/D, ACS, 승률 등 핵심 지표를 한눈에 확인하세요.</p>
@@ -170,6 +176,7 @@
                 </div>
             </section>
 
+            <!-- 작동 모습 섹션 -->
             <section id="showcase" class="py-20 px-4">
                 <div class="container mx-auto text-center">
                     <h2 class="text-4xl font-bold text-white mb-12">RiotDog N 작동 모습</h2>
@@ -186,9 +193,9 @@
                                     <span class="text-white font-bold text-lg">RiotDog N</span>
                                     <span class="text-xs text-gray-400">오늘 오후 09:15</span>
                                 </div>
-                                <div class="mt-2 bg-[#2f3136] border-l-4 border-purple-500 rounded p-4">
+                                <div class="mt-2 bg-[#2f3136] border-l-4 border-blue-500 rounded p-4">
                                     <div class="flex items-center space-x-4">
-                                        <img src="https://via.placeholder.com/80x80/2c2f33/ffffff?text=ICON" alt="플레이어 아이콘" class="w-20 h-20 rounded-lg">
+                                        <img src="https://placehold.co/80x80/2c2f33/ffffff?text=ICON" alt="플레이어 아이콘" class="w-20 h-20 rounded-lg">
                                         <div>
                                             <h3 class="text-xl font-bold text-white">🔫 Faker#KR1 님의 발로란트 전적</h3>
                                             <p class="text-sm text-gray-300">&gt; 최신 경쟁전 정보를 요약합니다.</p>
@@ -209,11 +216,12 @@
                 </div>
             </section>
 
+            <!-- 팀 정보 섹션 -->
             <section id="team" class="py-20 px-4 bg-black/20">
                 <div class="container mx-auto text-center max-w-4xl">
                     <h2 class="text-4xl font-bold text-white mb-4">Our Team: SECURITY N</h2>
                     <p class="text-lg text-gray-300 leading-relaxed">
-                        저희 <span class="font-bold text-purple-400">SECURITY N</span>은 디스코드 커뮤니티를 위한 혁신적이고 직관적인 도구를 개발하는 전문 팀입니다.
+                        저희 <span class="font-bold text-blue-400">SECURITY N</span>은 디스코드 커뮤니티를 위한 혁신적이고 직관적인 도구를 개발하는 전문 팀입니다.
                         단순한 기능 제공을 넘어, 사용자가 디스코드 생태계 안에서 최고의 경험을 할 수 있도록 돕는 것을 목표로 합니다.
                         RiotDog N은 저희의 첫 번째 프로젝트이며, 앞으로도 계속해서 새롭고 유용한 봇과 툴을 선보일 예정입니다.
                     </p>
@@ -221,20 +229,23 @@
             </section>
         </main>
 
+        <!-- 푸터 -->
         <footer class="py-16 text-center border-t border-gray-800/50">
             <div class="container mx-auto flex flex-col items-center justify-center">
-                <h2 class="text-8xl font-black text-white neon-text">
+                <!-- 폰트 크기를 화면에 따라 극적으로 변경하고, 줄 간격을 조절 -->
+                <h2 class="text-6xl sm:text-8xl md:text-9xl lg:text-[10rem] xl:text-[12rem] font-black text-white neon-text leading-none">
                     SECURITY N
                 </h2>
                  <p class="mt-6 text-xs text-gray-500">
-                    Player data provided by <a href="https://tracker.gg/" target="_blank" rel="noopener noreferrer" class="text-purple-400 hover:underline">Tracker.gg</a>. 
+                    Player data provided by <a href="https://tracker.gg/" target="_blank" rel="noopener noreferrer" class="text-blue-400 hover:underline">Tracker.gg</a>. 
                     This bot is not affiliated with Riot Games.
                 </p>
-                <p class="text-xs text-gray-600 mt-1">&copy; 2024 RiotDog N. All rights reserved.</p>
+                <p class="text-xs text-gray-600 mt-1" id="copyright">&copy; 2024 RiotDog N. All rights reserved.</p>
             </div>
         </footer>
     </div>
 
+    <!-- 3D 틸트 효과를 위한 JavaScript -->
     <script>
         const card = document.getElementById('showcase-card');
 
@@ -243,8 +254,8 @@
             const x = e.clientX - left - width / 2;
             const y = e.clientY - top - height / 2;
 
-            const rotateY = (x / width) * 15; // 기울기 강도 조절
-            const rotateX = -(y / height) * 15; // 기울기 강도 조절
+            const rotateY = (x / width) * 12; // 기울기 강도 (6도)
+            const rotateX = -(y / height) * 12; // 기울기 강도 (6도)
 
             card.style.transition = 'transform 0.1s ease-out';
             card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.05, 1.05, 1.05)`;
@@ -256,7 +267,7 @@
         });
         
         // Copyright 연도 자동 업데이트
-        document.querySelector('footer p.text-xs.text-gray-600').innerHTML = `&copy; ${new Date().getFullYear()} RiotDog N. All rights reserved.`;
+        document.getElementById('copyright').innerHTML = `&copy; ${new Date().getFullYear()} RiotDog N. All rights reserved.`;
     </script>
 </body>
 </html>

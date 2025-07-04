@@ -6,7 +6,7 @@
     <title>RiotDog N - 당신의 게임 전적 비서</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts -->
+    <!-- Google Fonts: Noto Sans KR (두꺼운 웨이트 포함) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&display=swap" rel="stylesheet">
@@ -14,8 +14,9 @@
     <style>
         /* 기본 스타일 및 커스텀 애니메이션 */
         body {
+            /* 폰트를 Noto Sans KR로 변경 */
             font-family: 'Noto Sans KR', sans-serif;
-            background-color: #0a0f1f; /* 기본 배경을 좀 더 푸른 톤으로 */
+            background-color: #0a0f1f;
             color: #e0e0e0;
             overflow-x: hidden;
             user-select: none;
@@ -32,7 +33,6 @@
             width: 100%;
             height: 100%;
             z-index: -1;
-            /* 그라데이션 색상을 남색/파란색 계열로 변경 */
             background: linear-gradient(-45deg, #0a192f, #1e3a8a, #0a0f1f, #3b82f6);
             background-size: 400% 400%;
             animation: gradient-animation 15s ease infinite;
@@ -47,8 +47,8 @@
         .neon-text {
             text-shadow:
                 0 0 7px rgba(255, 255, 255, 0.9),
-                0 0 12px rgba(173, 216, 230, 0.7), /* 연한 파란색 네온 */
-                0 0 25px rgba(66, 135, 245, 0.5),  /* 진한 파란색 네온 */
+                0 0 12px rgba(173, 216, 230, 0.7),
+                0 0 25px rgba(66, 135, 245, 0.5),
                 0 0 50px rgba(66, 135, 245, 0.4),
                 0px 1px 3px rgba(0, 0, 0, 0.5);
         }
@@ -56,7 +56,6 @@
         .neon-button {
             transition: all 0.3s ease;
             border: 2px solid #fff;
-            /* 버튼 네온 효과를 파란색으로 변경 */
             box-shadow:
                 0 0 5px #fff,
                 0 0 10px #add8e6,
@@ -96,8 +95,15 @@
         .feature-card:hover {
             border-color: rgba(255, 255, 255, 0.8);
             transform: translateY(-10px);
-            /* 호버 효과를 파란색 네온으로 변경 */
             box-shadow: 0 0 20px rgba(66, 135, 245, 0.3), 0 0 40px rgba(66, 135, 245, 0.2);
+        }
+        
+        /* 페이드 전환 효과를 위한 CSS */
+        .showcase-content {
+            transition: opacity 0.5s ease-in-out;
+        }
+        .showcase-content.fade-out {
+            opacity: 0;
         }
     </style>
 </head>
@@ -109,7 +115,6 @@
         <header class="fixed top-0 left-0 right-0 z-50 p-4 bg-transparent backdrop-blur-sm bg-opacity-10">
             <div class="container mx-auto flex justify-between items-center">
                 <div class="flex items-center space-x-3">
-                    <!-- 봇 아이콘 SVG -->
                     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-white"><path d="M12 8V4H8"/><rect width="16" height="12" x="4" y="8" rx="2"/><path d="M2 14h2"/><path d="M20 14h2"/><path d="M15 13v2"/><path d="M9 13v2"/></svg>
                     <h1 class="text-2xl font-bold text-white">RiotDog N</h1>
                 </div>
@@ -134,7 +139,7 @@
                     </h2>
                     <p class="text-lg md:text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
                         RiotDog N과 함께라면 더 이상 웹사이트를 찾아다닐 필요가 없습니다.<br/>
-                        간단한 명령어로 발로란트와 리그 오브 레전드의 전적을 즉시 분석하세요.
+                        간단한 명령어로 리그 오브 레전드 전적을 즉시 분석하세요.
                     </p>
                     <a href="https://discord.com/api/oauth2/authorize?client_id=YOUR_CLIENT_ID&permissions=274877975616&scope=bot%20applications.commands" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-white rounded-full neon-button">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-3"><path d="M12 8V4H8"/><rect width="16" height="12" x="4" y="8" rx="2"/><path d="M2 14h2"/><path d="M20 14h2"/><path d="M15 13v2"/><path d="M9 13v2"/></svg>
@@ -153,16 +158,9 @@
                     <div class="grid md:grid-cols-3 gap-8">
                         <div class="feature-card rounded-2xl p-8 text-center">
                             <div class="inline-block p-4 bg-gray-800 rounded-full mb-4 border border-gray-700">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-cyan-400"><line x1="6" x2="10" y1="12" y2="12"/><line x1="8" x2="8" y1="10" y2="14"/><path d="M17.28 9.05a2.43 2.43 0 0 0-2.18-2.18"/><path d="M20.57 14.95a2.43 2.43 0 0 0 2.18-2.18"/><path d="M12 2a10 10 0 1 0 10 10"/><path d="M12 22a10 10 0 0 0-10-10"/></svg>
-                            </div>
-                            <h3 class="text-2xl font-bold text-white mb-2">발로란트 전적 조회</h3>
-                            <p class="text-gray-400">`/발로란트` 명령어로 현재 랭크, K/D, ACS, 승률 등 핵심 지표를 한눈에 확인하세요.</p>
-                        </div>
-                        <div class="feature-card rounded-2xl p-8 text-center">
-                            <div class="inline-block p-4 bg-gray-800 rounded-full mb-4 border border-gray-700">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-blue-400"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><path d="m16 13-4 4-4-4"/><path d="m12 17-4-4"/></svg>
                             </div>
-                            <h3 class="text-2xl font-bold text-white mb-2">리그 오브 레전드 전적</h3>
+                            <h3 class="text-2xl font-bold text-white mb-2">종합 전적 조회</h3>
                             <p class="text-gray-400">`/롤` 명령어로 솔로 랭크 티어, 주력 챔피언, 최근 승률 등 소환사 정보를 빠르게 조회합니다.</p>
                         </div>
                         <div class="feature-card rounded-2xl p-8 text-center">
@@ -172,6 +170,13 @@
                             <h3 class="text-2xl font-bold text-white mb-2">최근 게임 분석</h3>
                             <p class="text-gray-400">`/최근전적` 명령어로 최근 5~10게임의 상세 기록을 분석하여 자신의 플레이를 되돌아볼 수 있습니다.</p>
                         </div>
+                        <div class="feature-card rounded-2xl p-8 text-center">
+                            <div class="inline-block p-4 bg-gray-800 rounded-full mb-4 border border-gray-700">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-yellow-400"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                            </div>
+                            <h3 class="text-2xl font-bold text-white mb-2">챔피언 숙련도</h3>
+                            <p class="text-gray-400">`/숙련도` 명령어로 특정 챔피언의 숙련도 점수와 등급, 다음 등급까지 필요한 점수를 확인합니다.</p>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -179,7 +184,8 @@
             <!-- 작동 모습 섹션 -->
             <section id="showcase" class="py-20 px-4">
                 <div class="container mx-auto text-center">
-                    <h2 class="text-4xl font-bold text-white mb-12">RiotDog N 작동 모습</h2>
+                    <h2 class="text-4xl font-bold text-white mb-2">RiotDog N 작동 모습</h2>
+                    <p class="text-gray-400 mb-12">아래는 봇의 기능 예시이며, 실제로는 더 많은 기능들을 지원합니다.</p>
                     <div id="showcase-card" class="max-w-4xl mx-auto bg-gray-900/50 rounded-lg p-4 md:p-6 border border-gray-700 shadow-2xl transition-transform duration-500" style="transform-style: preserve-3d;">
                         <div class="flex items-center space-x-3 p-3 border-b border-gray-700">
                             <div class="w-3 h-3 bg-red-500 rounded-full"></div>
@@ -193,22 +199,19 @@
                                     <span class="text-white font-bold text-lg">RiotDog N</span>
                                     <span class="text-xs text-gray-400">오늘 오후 09:15</span>
                                 </div>
-                                <div class="mt-2 bg-[#2f3136] border-l-4 border-blue-500 rounded p-4">
-                                    <div class="flex items-center space-x-4">
-                                        <img src="https://placehold.co/80x80/2c2f33/ffffff?text=ICON" alt="플레이어 아이콘" class="w-20 h-20 rounded-lg">
-                                        <div>
-                                            <h3 class="text-xl font-bold text-white">🔫 Faker#KR1 님의 발로란트 전적</h3>
-                                            <p class="text-sm text-gray-300">&gt; 최신 경쟁전 정보를 요약합니다.</p>
+                                <!-- 동적 콘텐츠가 표시될 영역 -->
+                                <div id="showcase-content-wrapper" class="showcase-content">
+                                    <div class="mt-2 bg-[#2f3136] border-l-4 border-blue-500 rounded-lg overflow-hidden" id="embed-wrapper">
+                                        <img id="player-card-banner" src="" alt="플레이어 카드" class="w-full h-32 object-cover">
+                                        <div class="p-4">
+                                            <h3 id="player-name" class="text-xl font-bold text-white"></h3>
+                                            <p id="player-desc" class="text-sm text-gray-300"></p>
+                                            <div id="stats-grid" class="grid grid-cols-2 md:grid-cols-3 gap-4 mt-4">
+                                                <!-- 스탯이 동적으로 채워집니다. -->
+                                            </div>
+                                            <div class="text-xs text-gray-500 mt-4 text-right">Data provided by Tracker.gg</div>
                                         </div>
                                     </div>
-                                    <div class="grid grid-cols-2 md:grid-cols-3 gap-4 mt-4">
-                                        <div><p class="text-xs text-gray-400 uppercase">경쟁전 랭크</p><p class="text-white font-bold text-lg">래디언트</p></div>
-                                        <div><p class="text-xs text-gray-400 uppercase">K/D</p><p class="text-white font-bold text-lg">1.42</p></div>
-                                        <div><p class="text-xs text-gray-400 uppercase">ACS</p><p class="text-white font-bold text-lg">278.5</p></div>
-                                        <div><p class="text-xs text-gray-400 uppercase">승률</p><p class="text-white font-bold text-lg">62.1%</p></div>
-                                        <div><p class="text-xs text-gray-400 uppercase">헤드샷</p><p class="text-white font-bold text-lg">25.8%</p></div>
-                                    </div>
-                                    <div class="text-xs text-gray-500 mt-4 text-right">Data provided by Tracker.gg</div>
                                 </div>
                             </div>
                         </div>
@@ -232,8 +235,7 @@
         <!-- 푸터 -->
         <footer class="py-16 text-center border-t border-gray-800/50">
             <div class="container mx-auto flex flex-col items-center justify-center">
-                <!-- 폰트 크기를 화면에 따라 극적으로 변경하고, 줄 간격을 조절 -->
-                <h2 class="text-6xl sm:text-8xl md:text-9xl lg:text-[10rem] xl:text-[12rem] font-black text-white neon-text leading-none">
+                <h2 class="text-9xl sm:text-[9rem] md:text-[12rem] lg:text-[15rem] xl:text-[18rem] font-black text-white neon-text leading-none">
                     SECURITY N
                 </h2>
                  <p class="mt-6 text-xs text-gray-500">
@@ -245,22 +247,19 @@
         </footer>
     </div>
 
-    <!-- 3D 틸트 효과를 위한 JavaScript -->
+    <!-- 스크립트 -->
     <script>
+        // 3D 틸트 효과
         const card = document.getElementById('showcase-card');
-
         card.addEventListener('mousemove', (e) => {
             const { left, top, width, height } = card.getBoundingClientRect();
             const x = e.clientX - left - width / 2;
             const y = e.clientY - top - height / 2;
-
-            const rotateY = (x / width) * 12; // 기울기 강도 (6도)
-            const rotateX = -(y / height) * 12; // 기울기 강도 (6도)
-
+            const rotateY = (x / width) * 12;
+            const rotateX = -(y / height) * 12;
             card.style.transition = 'transform 0.1s ease-out';
             card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.05, 1.05, 1.05)`;
         });
-
         card.addEventListener('mouseleave', () => {
             card.style.transition = 'transform 0.5s ease-in-out';
             card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)';
@@ -268,6 +267,86 @@
         
         // Copyright 연도 자동 업데이트
         document.getElementById('copyright').innerHTML = `&copy; ${new Date().getFullYear()} RiotDog N. All rights reserved.`;
+
+        // 동적 쇼케이스 데이터 및 로직
+        const players = [
+            // LCK
+            { name: "Hide on bush#KR1", card: "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Ahri_0.jpg", stats: [{ label: "솔로 랭크", value: "Challenger 1,350LP" }, { label: "주력 챔피언", value: "아리" }] },
+            { name: "GEN Chovy#KR1", card: "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Corki_0.jpg", stats: [{ label: "솔로 랭크", value: "Challenger 1,680LP" }, { label: "주력 챔피언", value: "코르키" }] },
+            { name: "T1 Keria#KR1", card: "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Lux_0.jpg", stats: [{ label: "솔로 랭크", value: "Grandmaster 890LP" }, { label: "주력 챔피언", value: "럭스" }] },
+            { name: "Deft#KR1", card: "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Caitlyn_0.jpg", stats: [{ label: "솔로 랭크", value: "Challenger 1,120LP" }, { label: "주력 챔피언", value: "케이틀린" }] },
+            { name: "DK ShowMaker#KR1", card: "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Leblanc_0.jpg", stats: [{ label: "솔로 랭크", value: "Challenger 1,410LP" }, { label: "주력 챔피언", value: "르블랑" }] },
+            { name: "T1 Zeus#KR1", card: "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Jayce_0.jpg", stats: [{ label: "솔로 랭크", value: "Challenger 1,550LP" }, { label: "주력 챔피언", value: "제이스" }] },
+            { name: "T1 Oner#KR1", card: "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/LeeSin_0.jpg", stats: [{ label: "솔로 랭크", value: "Challenger 1,230LP" }, { label: "주력 챔피언", value: "리 신" }] },
+            { name: "T1 Gumayusi#KR1", card: "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Jinx_0.jpg", stats: [{ label: "솔로 랭크", value: "Challenger 1,480LP" }, { label: "주력 챔피언", value: "징크스" }] },
+            { name: "DK Canyon#KR1", card: "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Nidalee_0.jpg", stats: [{ label: "솔로 랭크", value: "Challenger 1,720LP" }, { label: "주력 챔피언", value: "니달리" }] },
+            { name: "GEN Peyz#KR1", card: "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Aphelios_0.jpg", stats: [{ label: "솔로 랭크", value: "Challenger 1,300LP" }, { label: "주력 챔피언", value: "아펠리오스" }] },
+            { name: "HLE Peanut#KR1", card: "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Sejuani_0.jpg", stats: [{ label: "솔로 랭크", value: "Challenger 1,100LP" }, { label: "주력 챔피언", value: "세주아니" }] },
+            { name: "KT BDD#KR1", card: "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Azir_0.jpg", stats: [{ label: "솔로 랭크", value: "Challenger 1,250LP" }, { label: "주력 챔피언", value: "아지르" }] },
+            // LCK CL
+            { name: "NS Jiwoo#KR1", card: "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Zeri_0.jpg", stats: [{ label: "솔로 랭크", value: "Challenger 1,050LP" }, { label: "주력 챔피언", value: "제리" }] },
+            { name: "KDF BuLLDoG#KR1", card: "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Tristana_0.jpg", stats: [{ label: "솔로 랭크", value: "Grandmaster 900LP" }, { label: "주력 챔피언", value: "트리스타나" }] },
+            { name: "DRX Starlit#KR1", card: "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Aatrox_0.jpg", stats: [{ label: "솔로 랭크", value: "Master 500LP" }, { label: "주력 챔피언", value: "아트록스" }] },
+            // LPL
+            { name: "WBG TheShy#KR1", card: "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Gnar_0.jpg", stats: [{ label: "솔로 랭크", value: "Challenger 1,100LP" }, { label: "주력 챔피언", value: "나르" }] },
+            { name: "TES Rookie#KR1", card: "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Orianna_0.jpg", stats: [{ label: "솔로 랭크", value: "Challenger 1,300LP" }, { label: "주력 챔피언", value: "오리아나" }] },
+            { name: "BLG Knight#LPL", card: "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Sylas_0.jpg", stats: [{ label: "솔로 랭크", value: "Challenger 1,800LP" }, { label: "주력 챔피언", value: "사일러스" }] },
+            { name: "EDG Uzi#LPL", card: "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Vayne_0.jpg", stats: [{ label: "솔로 랭크", value: "Master 300LP" }, { label: "주력 챔피언", value: "베인" }] },
+            { name: "JDG Ruler#KR1", card: "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Varus_0.jpg", stats: [{ label: "솔로 랭크", value: "Challenger 1,500LP" }, { label: "주력 챔피언", value: "바루스" }] },
+            { name: "LNG Scout#KR1", card: "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Zoe_0.jpg", stats: [{ label: "솔로 랭크", value: "Challenger 1,400LP" }, { label: "주력 챔피언", value: "조이" }] },
+            { name: "TES JackeyLove#LPL", card: "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Draven_0.jpg", stats: [{ label: "솔로 랭크", value: "Challenger 1,200LP" }, { label: "주력 챔피언", value: "드레이븐" }] },
+            { name: "RNG Ming#LPL", card: "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Rakan_0.jpg", stats: [{ label: "솔로 랭크", value: "Grandmaster 700LP" }, { label: "주력 챔피언", value: "라칸" }] },
+            // LEC
+            { name: "G2 Caps#EUW", card: "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Yasuo_0.jpg", stats: [{ label: "솔로 랭크", value: "Challenger 1,150LP" }, { label: "주력 챔피언", value: "야스오" }] },
+            { name: "FNC Humanoid#EUW", card: "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Viktor_0.jpg", stats: [{ label: "솔로 랭크", value: "Challenger 1,000LP" }, { label: "주력 챔피언", value: "빅토르" }] },
+            { name: "G2 Jankos#EUW", card: "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Elise_0.jpg", stats: [{ label: "솔로 랭크", value: "Challenger 950LP" }, { label: "주력 챔피언", value: "엘리스" }] },
+            { name: "KC Rekkles#EUW", card: "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Sivir_0.jpg", stats: [{ label: "솔로 랭크", value: "Challenger 1,050LP" }, { label: "주력 챔피언", value: "시비르" }] },
+            { name: "G2 BrokenBlade#EUW", card: "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Irelia_0.jpg", stats: [{ label: "솔로 랭크", value: "Challenger 1,200LP" }, { label: "주력 챔피언", value: "이렐리아" }] },
+            { name: "MAD Elyoya#EUW", card: "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Viego_0.jpg", stats: [{ label: "솔로 랭크", value: "Challenger 1,100LP" }, { label: "주력 챔피언", value: "비에고" }] },
+            // LCS
+            { name: "FLY Bjergsen#NA1", card: "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Syndra_0.jpg", stats: [{ label: "솔로 랭크", value: "Challenger 900LP" }, { label: "주력 챔피언", value: "신드라" }] },
+            { name: "100T Doublelift#NA1", card: "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Lucian_0.jpg", stats: [{ label: "솔로 랭크", value: "Master 200LP" }, { label: "주력 챔피언", value: "루시안" }] },
+            { name: "C9 Blaber#NA1", card: "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Kindred_0.jpg", stats: [{ label: "솔로 랭크", value: "Challenger 1,000LP" }, { label: "주력 챔피언", "value": "킨드레드" }] },
+            { name: "NRG Impact#KR1", card: "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Jax_0.jpg", stats: [{ label: "솔로 랭크", value: "Grandmaster 600LP" }, { label: "주력 챔피언", value: "잭스" }] },
+            { name: "FLY CoreJJ#KR1", card: "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Thresh_0.jpg", stats: [{ label: "솔로 랭크", value: "Challenger 800LP" }, { label: "주력 챔피언", value: "쓰레쉬" }] },
+        ];
+
+        const showcaseContent = document.getElementById('showcase-content-wrapper');
+        const playerNameEl = document.getElementById('player-name');
+        const playerDescEl = document.getElementById('player-desc');
+        const playerCardBannerEl = document.getElementById('player-card-banner');
+        const statsGridEl = document.getElementById('stats-grid');
+        const embedWrapperEl = document.getElementById('embed-wrapper');
+
+        let currentPlayerIndex = 0;
+
+        function updateShowcase() {
+            showcaseContent.classList.add('fade-out');
+
+            setTimeout(() => {
+                const player = players[currentPlayerIndex];
+                
+                playerCardBannerEl.src = player.card;
+                playerNameEl.textContent = `${player.name} 님의 전적`;
+                playerDescEl.textContent = `> 최신 솔로 랭크 정보를 요약합니다.`;
+                
+                statsGridEl.innerHTML = '';
+                
+                player.stats.forEach(stat => {
+                    const statDiv = document.createElement('div');
+                    statDiv.innerHTML = `<p class="text-xs text-gray-400 uppercase">${stat.label}</p><p class="text-white font-bold text-lg">${stat.value}</p>`;
+                    statsGridEl.appendChild(statDiv);
+                });
+
+                showcaseContent.classList.remove('fade-out');
+
+                currentPlayerIndex = (currentPlayerIndex + 1) % players.length;
+            }, 500);
+        }
+
+        setInterval(updateShowcase, 4000); // 선수 전환 시간을 4초로 변경
+        updateShowcase();
+
     </script>
 </body>
-</html>
+</ht
